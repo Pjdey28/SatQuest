@@ -1,13 +1,13 @@
+import express from "express";
+import cors from "cors";
+import mongoose from "mongoose";
+import { nanoid } from "nanoid";
+import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
+import { Team, Puzzle, Design } from "./models/index.js";
+dotenv.config();
 
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const mongoose = require('mongoose');
-const { nanoid } = require('nanoid');
-
-const { Team, Puzzle, Design } = require('./models');
 
 const app = express();
 app.use(cors());
