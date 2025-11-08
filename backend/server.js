@@ -297,7 +297,7 @@ app.get('/api/team/:teamId', async (req,res) => {
 });
 
 
-if (process.env.NODE_ENV === "production") {
+
   const frontendPath = path.join(__dirname, "../front-end/dist");
   console.log("Serving frontend from:", frontendPath);
 
@@ -306,6 +306,5 @@ if (process.env.NODE_ENV === "production") {
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(frontendPath, "index.html"));
   });
-}
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, ()=>console.log('Server running on', PORT));
