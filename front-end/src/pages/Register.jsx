@@ -36,9 +36,9 @@ export default function Register({ setTeam }) {
         <input value={teamName} onChange={e=>setTeamName(e.target.value)} placeholder="Team name" className="w-full p-2 rounded bg-gray-900" required />
         {members.map((m,i)=>(
           <div key={i} className="grid grid-cols-3 gap-2">
-            <input value={m.name} onChange={e=>setMember(i,'name',e.target.value)} placeholder={`Member ${i+1} Name`} className="p-2 rounded bg-gray-900" required />
-            <input value={m.email} onChange={e=>setMember(i,'email',e.target.value)} placeholder="Email" className="p-2 rounded bg-gray-900" required />
-            <input value={m.phone} onChange={e=>setMember(i,'phone',e.target.value)} placeholder="Phone" className="p-2 rounded bg-gray-900" required />
+            <input value={m.name} onChange={e=>setMember(i,'name',e.target.value)} placeholder={`Member ${i+1} Name`} className="p-2 rounded bg-gray-900" required={i==0} />
+            <input value={m.email} onChange={e=>setMember(i,'email',e.target.value)} placeholder="Email" className="p-2 rounded bg-gray-900" required={i==0} />
+            <input value={m.phone} onChange={e=>setMember(i,'phone',e.target.value)} placeholder="Phone" className="p-2 rounded bg-gray-900" required={i==0} />
           </div>
         ))}
         <button className="px-4 py-2 bg-blue-600 rounded">Register</button>
