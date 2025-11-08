@@ -51,6 +51,20 @@ const ITEMS = {
 };
 
 export default function Designer({ team, setTeam }) {
+  // Lock if design already submitted
+  if (team?.stage3?.design) {
+    return (
+      <div className="flex flex-col items-center justify-center h-[70vh] text-center">
+        <h2 className="text-3xl font-semibold text-red-500 mb-3">
+          🚫 Design Already Submitted
+        </h2>
+        <p className="text-gray-400 max-w-md">
+          Your team has already submitted a design for this stage.<br />
+          Please contact the coordinators if you need to make changes.
+        </p>
+      </div>
+    );
+  }
   const [step, setStep] = useState(0);
   const [budget, setBudget] = useState(0);              // original coins/budget
   const [remaining, setRemaining] = useState(0);        // budget - committed cost
@@ -260,12 +274,13 @@ export default function Designer({ team, setTeam }) {
     try {
       const payload = {
         teamId: team._id,
+        teamName: team.teamName,
         platformSize: selected.satellite.grid_size,
-        orbit: selected.orbit?.code,
-        solar: selected.solar?.code,
-        batteries: selected.batteries.map(b=>b.code),
+        orbit: selected.orbit?.name, 
+        solar: selected.solar?.name,
+        batteries: selected.batteries.map(b=>b.name),
         components: placed.map(p=>({
-          code: p.code, r: p.r, c: p.c, grid_span: p.grid_span, cost: p.cost, power: p.draw
+          code: p.code, name:p.name,r: p.r, c: p.c, grid_span: p.grid_span, cost: p.cost, power: p.draw
         }))
       };
 
