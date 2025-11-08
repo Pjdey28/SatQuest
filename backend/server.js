@@ -29,16 +29,43 @@ function makeTeamCode() {
  * body: { teamName, members: [{name,email,phone},{...},{...}] }
  * returns teamId, teamCode
  */
-app.post('/api/register', async (req,res) => {
+app.post('/api/register', async (req, res) => {
   try {
     const { teamName, members } = req.body;
-    if (!teamName || !members || members.length !== 3) return res.status(400).json({ error: 'teamName and exactly 3 members required' });
-    const teamCode = makeTeamCode();
-    const team = await Team.create({ teamName, teamCode, members });
-    return res.json({ ok: true, teamId: team._id, teamCode });
-  } catch(err) {
-    console.error(err);
-    return res.status(500).json({ error: 'server error', detail: err.message });
+
+    // Validation
+    if (!teamName) {
+      return res.status(400).json({ error: 'Team name is required' });
+    }
+
+    // Clean members (ignore empty entries)
+    const filteredMembers = (members || []).filter(
+      (m) => m.name?.trim() || m.email?.trim() || m.phone?.trim()
+    );
+
+    if (filteredMembers.length === 0) {
+      return res.status(400).json({ error: 'At least one member is required' });
+    }
+
+    // Check for duplicate team name
+    const existingTeam = await Team.findOne({ teamName });
+    if (existingTeam) {
+      return res.status(400).json({ error: 'Team name already exists. Please choose another.' });
+    }
+
+    const teamCode = nanoid(6).toUpperCase();
+
+    const team = await Team.create({
+      teamName,
+      teamCode,
+      members: filteredMembers,
+      stage3: { coins: 0, design: null },
+    });
+
+    res.json({ ok: true, teamId: team._id, teamCode });
+  } catch (err) {
+    console.error('❌ /api/register error:', err);
+    res.status(500).json({ error: 'Server error during registration', detail: err.message });
   }
 });
 

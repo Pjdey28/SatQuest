@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const MemberSchema = new mongoose.Schema({
   name: String,
@@ -46,14 +46,6 @@ const TeamSchema = new mongoose.Schema({
   teamCode: { type: String, required: true, unique: true }, // login code
   members: { type: [MemberSchema], default: [] }, // expect 3 members
   createdAt: { type: Date, default: Date.now },
-
-  // Stage progress
-  stage1: {
-    puzzleId: { type: mongoose.Schema.Types.ObjectId, ref: 'Puzzle' },
-    solved: { type: Boolean, default: false },
-    solvedAt: Date,
-    coordinate: { r:Number, c:Number }
-  },
   stage3: {
     coins: { type: Number, default: 0 },
     design: {  type: mongoose.Schema.Types.ObjectId, ref: "Design" }
@@ -64,4 +56,4 @@ const Team = mongoose.model('Team', TeamSchema);
 const Puzzle = mongoose.model('Puzzle', PuzzleSchema);
 const Design = mongoose.model('Design', designSchema);
 
-module.exports = { Team, Puzzle, Design };
+export { Team, Puzzle, Design };
