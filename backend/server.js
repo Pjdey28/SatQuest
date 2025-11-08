@@ -15,6 +15,9 @@ app.use(express.json());
 
 const MONGO = process.env.MONGO_URI ;
 mongoose.connect(MONGO).then(()=>console.log('Mongo connected')).catch(e=>console.error(e));
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 
 // Helper: create a 6-char team code
 function makeTeamCode() {
@@ -293,17 +296,16 @@ app.get('/api/team/:teamId', async (req,res) => {
   }
 });
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
 if (process.env.NODE_ENV === "production") {
   const frontendPath = path.join(__dirname, "../front-end/dist");
+  console.log("Serving frontend from:", frontendPath);
+
   app.use(express.static(frontendPath));
 
   app.get("*", (req, res) => {
-    res.sendFile(path.join(frontendPath, "index.html"));
+    res.sendFile(path.resolve(frontendPath, "index.html"));
   });
 }
-
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, ()=>console.log('Server running on', PORT));
