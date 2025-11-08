@@ -5,7 +5,7 @@ import { nanoid } from "nanoid";
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
-import { Team, Puzzle, Design } from "./models/index.js";
+import { Team, Puzzle, Design } from "./models.js";
 dotenv.config();
 
 
