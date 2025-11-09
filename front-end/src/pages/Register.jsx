@@ -33,12 +33,12 @@ export default function Register({ setTeam }) {
     <motion.div className="card mb-6" initial={{y:20, opacity:0}} animate={{y:0, opacity:1}}>
       <h2 className="text-2xl font-semibold mb-3">Register Team</h2>
       <form onSubmit={submit} className="space-y-3">
-        <input value={teamName} onChange={e=>setTeamName(e.target.value)} placeholder="Team name" className="w-full p-2 rounded bg-gray-900" required />
+        <input value={teamName} onChange={e=>setTeamName(e.target.value)} placeholder="Team name" className="w-auto p-2 rounded border-2 border-black bg-white/2" required />
         {members.map((m,i)=>(
-          <div key={i} className="grid grid-cols-3 gap-2">
-            <input value={m.name} onChange={e=>setMember(i,'name',e.target.value)} placeholder={`Member ${i+1} Name`} className="p-2 rounded bg-gray-900" required={i==0} />
-            <input value={m.email} onChange={e=>setMember(i,'email',e.target.value)} placeholder="Email" className="p-2 rounded bg-gray-900" required={i==0} />
-            <input value={m.phone} onChange={e=>setMember(i,'phone',e.target.value)} placeholder="Phone" className="p-2 rounded bg-gray-900" required={i==0} />
+          <div key={i} className="flex-2 gap-2 sm:grid grid-cols-3">
+            <input value={m.name} onChange={e=>setMember(i,'name',e.target.value)} placeholder={`Member ${i+1} Name`} className="w-auto  p-2 rounded border-2 border-black bg-white/2" required={i==0} />
+            <input value={m.email} onChange={e=>setMember(i,'email',e.target.value)} placeholder="Email" className="w-auto p-2 my-2 rounded border-2 border-black bg-white/2" required={i==0} />
+            <input value={m.phone} onChange={e=>setMember(i,'phone',e.target.value)} placeholder="Phone" className="w-auto p-2 rounded border-2 border-black bg-white/2" required={i==0} />
           </div>
         ))}
         <button className="px-4 py-2 bg-blue-600 rounded">Register</button>

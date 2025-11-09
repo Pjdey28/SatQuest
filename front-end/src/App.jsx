@@ -3,6 +3,7 @@ import './App.css';
 import Landing from './pages/Landing';
 import Register from './pages/Register';
 import Login from './pages/Login';
+import satellite from './assets/satellite.png';
 import Dashboard from './pages/Dashboard';
 import Crossword from './pages/Crossword';
 import Designer from './pages/Designer';
@@ -25,18 +26,30 @@ export default function App() {
       <div className="container">
         {!team ? (
           <>
-            <Landing />
-            <Register setTeam={setTeam} />
-            <Login setTeam={setTeam} />
+          <div
+                className="fixed inset-0 z-0 bg-cover bg-center overflow-hidden"
+                style={{ backgroundImage: `url(${satellite})` }}
+              />
+              {/* Overlay for readability */}
+              <div className="fixed inset-0 z-10 bg-blue-950/2 backdrop-blur-sm" />
+              {/* Main glassmorphism card */}
+              <div className="relative z-20 flex items-center justify-center overflow-hidden ">
+                <div className="w-full max-w-5xl mx-auto rounded-3xl bg-white/2 backdrop-blur-sm shadow-2xl border border-white/20 p-4 sm:p-8">
+                  <Landing />
+                  <Register setTeam={setTeam} />
+                  <Login setTeam={setTeam} />
+                </div>
+              </div>
+
           </>
         ) : (
           <>
-          {/*  <Dashboard team={team} /> */}
-           {/* <Crossword team={team} setTeam={setTeam} /> */}
+            {/*  <Dashboard team={team} /> */}
+            {/* <Crossword team={team} setTeam={setTeam} /> */}
             <DndProvider backend={HTML5Backend}>
-  <Designer team={team} />
-</DndProvider>
-</>
+              <Designer team={team} setTeam={setTeam} />
+            </DndProvider>
+          </>
         )}
       </div>
     </div>

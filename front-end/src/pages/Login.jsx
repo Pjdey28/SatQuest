@@ -16,9 +16,9 @@ export default function Login({ setTeam }) {
   return (
     <div className="card mb-6">
       <h3 className="text-xl font-semibold mb-2">Login with Team Code</h3>
-      <form onSubmit={submit} className="flex gap-2">
-        <input value={code} onChange={e=>setCode(e.target.value)} placeholder="TEAMCODE" className="p-2 rounded bg-gray-900 inline-block" />
-        <button className="px-3 py-2 bg-green-600 rounded">Login</button>
+      <form onSubmit={submit} >
+        <input value={code} onChange={e=>setCode(e.target.value)} placeholder="TEAMCODE" className="w-auto p-2 rounded border-2 border-black bg-white/2" />
+        <button className="px-3 py-2 mx-2 my-2 bg-green-600 rounded">Login</button>
       </form>
       <div className="text-sm text-yellow-300 mt-2">{msg}</div>
     </div>

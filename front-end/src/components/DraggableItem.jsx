@@ -24,7 +24,10 @@ export default function DraggableItem({ item, onMobileSelect }) {
     >
       <div className="font-semibold">{item.name}</div>
       <div className="text-xs text-slate-400">
-        Cost: {item.cost} | Power: {item.draw}W | Size: {item.grid_span}x{item.grid_span}
+        Cost: {item.cost} | Power: {item.draw}W | Size: {item.grid_span}x{item.grid_span} 
+      </div>
+      <div className="text-xs text-slate-400">
+        Use: {item.desc}
       </div>
     </div>
   );

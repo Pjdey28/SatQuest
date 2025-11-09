@@ -87,7 +87,7 @@ export default function DesignerGrid({ gridSize, placed, onPlaceChange }) {
         <div
           key={`${p.code}-${idx}`}
           onClick={() => handleRemove(p.code)}
-          className="absolute flex items-center justify-center text-[10px] sm:text-xs text-white bg-emerald-600 hover:bg-red-600 cursor-pointer rounded-sm select-none"
+          className="absolute flex items-center justify-center text-[10px] sm:text-xl text-white bg-emerald-600 hover:bg-red-600 cursor-pointer rounded-sm select-none"
           style={{
             top: `calc(${(p.r / gridSize) * 100}%)`,
             left: `calc(${(p.c / gridSize) * 100}%)`,

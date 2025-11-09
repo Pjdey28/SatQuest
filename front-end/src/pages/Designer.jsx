@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import DesignerGrid from "../components/DesignerGrid";
 import DraggableItem from "../components/DraggableItem";
 import { api } from "../api";
-
+import submarineBg from "../assets/submarine-bg.jpeg"; 
 /**
  * Designer.jsx
  * - Step driven UI similar to your HTML
@@ -306,10 +306,10 @@ export default function Designer({ team, setTeam }) {
   // Steps components (kept inline for clarity)
   const StepAuth = () => (
     <div className="text-center space-y-6">
-      <h3 className="text-4xl font-bold text-blue-600">Stage - 3 - Satellite Design Challenge</h3>
-      <h2 className="text-3xl font-semibold text-blue-400">Welcome to Mission SatQuest</h2>
-      <h1 className="text-2xl font-medium text-slate-200">Your Team Code for the Mission: <span className="text-yellow-300">{team.teamCode}</span></h1>
-      <p className="text-slate-300">Budget (coins): <strong>{format(budget)}</strong> SC</p>
+      <h3 className="text-2xl sm:ext-4xl font-bold text-blue-200">Stage - 3 - Satellite Design Challenge</h3>
+      <h2 className="text-xl sm:text-3xl font-semibold text-blue-400">Welcome to Mission SatQuest</h2>
+      <h1 className="text-xl sm:text-2xl font-medium text-slate-200">Your Team Code for the Mission: <span className="text-yellow-300">{team.teamCode}</span></h1>
+      <p className="text-md sm:text-2xl ">Budget (coins): <strong>{format(budget)}</strong> SC</p>
       {budget <= 0 ? (
         <p className="text-red-400 font-semibold"> No coins available for now. Contact organisers to start your mission </p>
       ) : (
@@ -322,17 +322,17 @@ export default function Designer({ team, setTeam }) {
   const StepInstructions = () => (
     <div className="space-y-4 text-slate-300">
       <h2 className="text-2xl font-bold text-primary-color">MISSION BRIEFING</h2>
-      <p>In 2025, OceanTech, a startup spun from NIT Rourkela's ocean engineering lab, faced a maritime crisis: The SS Indira, a colonial-era cargo ship sunk off Odisha's coast in 1942, lay hidden under dense mangrove thickets.</p>
-      <p>Design a satellite to locate & analyse the shipwreck beneath heavy marine vegetation.</p>
-      <ul className="list-disc list-inside ml-4">
+      <p className="text-xl">In 2025, OceanTech, a startup spun from NIT Rourkela's ocean engineering lab, faced a maritime crisis: The SS Indira, a colonial-era cargo ship sunk off Odisha's coast in 1942, lay hidden under dense mangrove thickets.</p>
+      <p className="text-xl">Design a satellite to locate & analyse the shipwreck beneath heavy marine vegetation.</p>
+      <ul className="list-disc text-md list-inside ml-4">
         <li>High-resolution imaging</li>
         <li>Vegetation penetration</li>
         <li>Debris detection & tracking</li>
         <li>Power & data constraints</li>
       </ul>
       <div className="flex gap-3">
-        <button className="btn-secondary px-4 py-2" onClick={() => prev()}>Back</button>
-        <button className="btn-primary px-4 py-2" onClick={() => next()}>Begin Design →</button>
+        <button className="btn-secondary cursor-pointer rounded-3xl bg-emerald-700 px-4 py-2" onClick={() => prev()}>Back</button>
+        <button className="btn-primary cursor-pointer rounded-3xl bg-blue-700 px-4 py-2" onClick={() => next()}>Begin Design →</button>
       </div>
     </div>
   );
@@ -340,8 +340,8 @@ export default function Designer({ team, setTeam }) {
   const StepSatellites = () => (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-bold text-emerald-400">1. Platform</h2>
-        <div className="text-sm text-yellow-300">Remaining: {format(remaining)} / {format(budget)} SC</div>
+        <h2 className="text-md sm:text-2xl font-bold text-green-700">1. Platform</h2>
+        <div className="text-sm sm:text-lg text-yellow-600">Remaining: {format(remaining)} / {format(budget)} SC</div>
       </div>
       <div className="grid md:grid-cols-2 gap-4">
         {ITEMS.satellites.map(s => (
@@ -354,8 +354,8 @@ export default function Designer({ team, setTeam }) {
         ))}
       </div>
       <div className="mt-4 flex gap-3">
-        <button className="btn-secondary" onClick={prev}>Back</button>
-        <button className="btn-primary" disabled={!selected.satellite} onClick={() => next()}>Next →</button>
+        <button className="btn-secondary cursor-pointer rounded-3xl bg-emerald-700 px-4 py-2" onClick={prev}>Back</button>
+        <button className="btn-primary px-4 py-2 cursor-pointer rounded-3xl bg-blue-700" disabled={!selected.satellite} onClick={() => next()}>Next →</button>
       </div>
       {msg && <div className="text-yellow-300 mt-2">{msg}</div>}
     </div>
@@ -364,8 +364,8 @@ export default function Designer({ team, setTeam }) {
   const StepOrbit = () => (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-2xl font-bold text-emerald-400">2. Orbit</h2>
-        <div className="text-sm text-yellow-300">Remaining: {format(remaining)} / {format(budget)} SC</div>
+        <h2 className="text-md sm:text-2xl font-bold text-green-700">2. Orbit</h2>
+        <div className="text-sm sm:text-lg text-yellow-600">Remaining: {format(remaining)} / {format(budget)} SC</div>
       </div>
       <div className="grid md:grid-cols-2 gap-4">
         {ITEMS.orbits.map(o => (
@@ -378,8 +378,8 @@ export default function Designer({ team, setTeam }) {
         ))}
       </div>
       <div className="mt-4 flex gap-3">
-        <button className="btn-secondary" onClick={prev}>Back</button>
-        <button className="btn-primary" disabled={!selected.orbit} onClick={() => next()}>Next →</button>
+        <button className="btn-secondary px-4 py-2 cursor-pointer rounded-3xl bg-emerald-700" onClick={prev}>Back</button>
+        <button className="btn-primary px-4 py-2 cursor-pointer rounded-3xl bg-blue-700" disabled={!selected.orbit} onClick={() => next()}>Next →</button>
       </div>
       {msg && <div className="text-yellow-300 mt-2">{msg}</div>}
     </div>
@@ -390,8 +390,8 @@ export default function Designer({ team, setTeam }) {
     return (
       <div>
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-2xl font-bold text-emerald-400">3. Payload & Placement</h2>
-          <div className="text-sm text-yellow-300">Remaining: {format(remaining)} / {format(budget)} SC</div>
+          <h2 className="text-md sm:text-2xl font-bold text-green-700">3. Payload & Placement</h2>
+          <div className="text-sm sm:text-lg text-yellow-600">Remaining: {format(remaining)} / {format(budget)} SC</div>
         </div>
 
         <div className="md:flex md:space-x-6">
@@ -413,7 +413,7 @@ export default function Designer({ team, setTeam }) {
    />
               ))}
             </div>
-            <div className="mt-4 text-sm text-slate-400">
+            <div className="mt-4 text-sm pb-0.5 text-white">
               Click a sensor to drop or drag it into the grid.
             </div>
           </div>
@@ -436,8 +436,8 @@ export default function Designer({ team, setTeam }) {
         </div>
 
         <div className="mt-4 flex gap-3">
-          <button className="btn-secondary" onClick={prev}>Back</button>
-          <button className="btn-primary" disabled={placed.length === 0} onClick={() => next()}>Next →</button>
+          <button className="btn-secondary px-4 py-2 cursor-pointer rounded-3xl bg-emerald-700" onClick={prev}>Back</button>
+          <button className="btn-primary px-4 py-2 cursor-pointer rounded-3xl bg-blue-700" disabled={placed.length === 0} onClick={() => next()}>Next →</button>
         </div>
         {msg && <div className="text-yellow-300 mt-2">{msg}</div>}
       </div>
@@ -451,8 +451,8 @@ export default function Designer({ team, setTeam }) {
     return (
       <div>
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-2xl font-bold text-emerald-400">4. Power Systems</h2>
-          <div className="text-sm text-yellow-300">Remaining: {format(remaining)} / {format(budget)} SC</div>
+          <h2 className="text-md sm:text-2xl font-bold text-green-700">4. Power Systems</h2>
+          <div className="text-sm sm:text-lg text-yellow-600">Remaining: {format(remaining)} / {format(budget)} SC</div>
         </div>
 
         <h3 className="text-lg font-semibold text-yellow-300">Select Solar Panel</h3>
@@ -490,8 +490,8 @@ export default function Designer({ team, setTeam }) {
         </div>
 
         <div className="mt-4 flex gap-3">
-          <button className="btn-secondary" onClick={prev}>Back</button>
-          <button className="btn-primary" disabled={!selected.solar || selected.batteries.length === 0} onClick={() => next()}>Analyze →</button>
+          <button className="btn-secondary px-4 py-2 cursor-pointer rounded-3xl bg-emerald-700" onClick={prev}>Back</button>
+          <button className="btn-primary px-4 py-2 cursor-pointer rounded-3xl bg-blue-700" disabled={!selected.solar || selected.batteries.length === 0} onClick={() => next()}>Analyze →</button>
         </div>
         {msg && <div className="text-yellow-300 mt-2">{msg}</div>}
       </div>
@@ -505,8 +505,8 @@ export default function Designer({ team, setTeam }) {
     return (
       <div>
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-2xl font-bold text-emerald-400">Summary & Submit</h2>
-          <div className="text-sm text-yellow-300">Remaining: {format(remaining)} / {format(budget)} SC</div>
+          <h2 className="text-md sm:text-2xl font-bold text-green-700">Summary & Submit</h2>
+          <div className="text-sm sm:text-lg text-yellow-600">Remaining: {format(remaining)} / {format(budget)} SC</div>
         </div>
 
         <div className="space-y-2 text-slate-300">
@@ -520,8 +520,8 @@ export default function Designer({ team, setTeam }) {
         </div>
 
         <div className="mt-4 flex gap-3">
-          <button className="btn-secondary" onClick={prev}>Back</button>
-          <button className="btn-primary bg-green-600" onClick={submitDesign} disabled={loading}>
+          <button className="btn-secondary px-4 py-2 cursor-pointer rounded-3xl bg-emerald-700" onClick={prev}>Back</button>
+          <button className="btn-primary px-4 py-2 cursor-pointer rounded-3xl bg-blue-700" onClick={submitDesign} disabled={loading}>
             {loading ? "Submitting..." : "Submit Final Design"}
           </button>
         </div>
@@ -543,8 +543,20 @@ export default function Designer({ team, setTeam }) {
   const StepComponent = steps[step];
 
   return (
-    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="p-6 bg-slate-900 rounded-xl shadow-lg text-white max-w-6xl mx-auto">
-      <StepComponent />
-    </motion.div>
+      <div className="relative min-h-screen w-full overflow-x-hidden">
+    {/* Background image */}
+    <div
+      className="fixed inset-0 z-0 bg-cover bg-center"
+      style={{ backgroundImage: `url(${submarineBg})` }}
+    />
+    {/* Overlay for readability */}
+    <div className="fixed inset-0 z-10 bg-blue-950/2 backdrop-blur-sm" />
+    {/* Main glassmorphism card */}
+    <div className="relative z-20 flex items-center justify-center min-h-screen">
+      <div className="w-full max-w-5xl mx-auto rounded-3xl bg-white/2 backdrop-blur-sm shadow-2xl border border-white/20 p-4 sm:p-8">
+        <StepComponent />
+      </div>
+    </div>
+  </div>
   );
 }
