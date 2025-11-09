@@ -274,7 +274,6 @@ export default function Designer({ team, setTeam }) {
     try {
       const payload = {
         teamId: team._id,
-        teamName: team.teamName,
         platformSize: selected.satellite.grid_size,
         orbit: selected.orbit?.name, 
         solar: selected.solar?.name,
